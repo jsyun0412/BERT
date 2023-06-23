@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <script>
+        data = fetch(url, config)
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                const emotions = document.createElement("div");
+                emotions.textContent = data.emotions;
+
+                const info = document.getElementById("datebutton");
+                datebutton.appendChild(emotions);
+
+                let key = Object.keys(data);
+                let value = Object.values(data);
+
+
+                //console.log(data);
+                data = JSON.stringify(data);
+                return data;
+            })
+            .catch(error => console.log(error));
+
+        return WordCloud(data);
+    </script>
+
+    <button onclick="getORG()">클릭</button>
+    <button onclick="getToday()">날짜</button>
+    .then(data => {
+    const emotions = document.createElement("div");
+    emotions.textContent = data.emotions;
+
+    const info = document.getElementById("datebutton");
+    datebutton.appendChild(emotions);
+
+    let key = Object.keys(data);
+    let value = Object.values(data);
+
+
+    //console.log(data);
+    data = JSON.stringify(data);
+
+    })
+
+    <div id="ORG"></div>
+    <script>
+        //오늘 날짜를 구하는 함수 
+        function getToday() {
+            const today = new Date();
+
+            const year = today.getFullYear(); // 년도
+            const month = today.getMonth() + 1;  // 월
+            const date = today.getDate();  // 날짜
+
+
+            //document.write(year);
+            //document.write(month);
+            //document.write(date);
+
+            var y = year.toString();
+            var m = month.toString();
+            var d = date.toString();
+            //document.write("<br>");
+            //document.write(y);
+            //document.write("<br>");
+            //document.write(m);
+            //document.write("<br>");
+            //document.write(d);
+
+            var n = y + m + d;
+            //document.write("<br>");
+            document.write(n);
+
+            return n;
+
+
+        };
+
+        //api 연결 
+        function getORG() {
+
+            const config = {
+
+                method: "GET"
+            };
+
+
+            fetch("http://13.125.2.17:8000/emotions/?date=20221030", config)
+                .then(response => {
+                    return response.json();
+                })
+                .then(data => {
+                    const emotions = document.createElement("div");
+                    emotions.textContent = data.emotions;
+
+                    const info = document.getElementById("ORG");
+                    ORG.appendChild(emotions);
+
+                    let key = Object.keys(data);
+                    let value = Object.values(data);
+
+
+                    console.log(data);
+                    //document.write(JSON.stringify(data));
+                    document.write(JSON.stringify(key));
+
+                    document.write(JSON.stringify(value));
+
+                    return emotions.textContent;
+                })
+                .catch(error => console.log(error));
+        }
+
+    </script>
+    <style>
+        .anychart-credits {
+            display: none;
+        }
+    </style>
+    <script>
+        anychart.onDocumentReady(function () {
+
+            var data = [
+                { category: "layers", "x": " ", value: 45173 },
+                { category: "views", "x": "삼성전자", value: 12000 },
+                { category: "/", "x": " ", value: 29495 },
+                { category: "/", "x": " ", value: 16951 },
+                { category: "layers", "x": " ", value: 14299 },
+                { category: "views", "x": "LG에너지솔루션", value: 20000 },
+                { category: "widgets", "x": " ", value: 13198 },
+                { category: "views", "x": "LG그룹", value: 8000 },
+                { category: "/", "x": " ", value: 11748 },
+                { category: "/", "x": " ", value: 10897 },
+                { category: "layers", "x": " ", value: 10131 },
+                { category: "layers", "x": " ", value: 9838 },
+                { category: "widgets", "x": " ", value: 9014 },
+                { category: "geometry", "x": " ", value: 8990 },
+                { category: "geometry", "x": " ", value: 8830 },
+
+                { category: "widgets", "x": " ", value: 7622 },
+                { category: "rest-support", "x": " ", value: 7476 },
+
+                { category: "layers", "x": " ", value: 7346 },
+                { category: "geometry", "x": " ", value: 7125 },
+                { category: "geometry", "x": " ", value: 6974 },
+                { category: "symbols", "x": "KT", value: 9000 },
+                { category: "renderers", "x": "현대차", value: 8000 },
+                { category: "widgets-sketch", "x": " ", value: 6561 },
+                { category: "geometry", "x": " ", value: 6453 },
+                { category: "renderers", "x": " ", value: 6140 },
+                { category: "layers", "x": " ", value: 6078 },
+                { category: "rest-support", "x": " ", value: 6067 },
+                { category: "widgets", "x": " ", value: 5909 },
+                { category: "symbols", "x": "SK하이닉스", value: 15000 },
+
+
+                { category: "renderers", "x": "네이버", value: 5382 },
+                { category: "renderers", "x": " ", value: 9000 },
+                { category: "widgets", "x": " ", value: 5337 },
+                { category: "views", "x": "삼성SDI", value: 8000 },
+                { category: "symbols", "x": "신한", value: 7500 },
+                { category: "renderers", "x": " ", value: 4582 },
+                { category: "renderers", "x": " ", value: 4581 },
+                { category: "widgets", "x": " ", value: 4519 },
+                { category: "symbols", "x": "우리금융그룹", value: 9001 },
+                { category: "symbols", "x": "하나금융지주", value: 8000 },
+                { category: "core", "x": " ", value: 4270 },
+                { category: "views", "x": "LG그룹", value: 14000 },
+                { category: "widgets", "x": " ", value: 4138 },
+                { category: "symbols", "x": "삼성전자", value: 15000 },
+                { category: "views", "x": "하나금융지주", value: 7000 },
+                { category: "geometry", "x": " ", value: 3933 },
+
+
+            ];
+
+            // create a tag cloud chart
+            var chart = anychart.tagCloud(data);
+
+            // set the chart title
+            //chart.title('Most commonly viewed API reference pages')
+            // set array of angles, by which words will be placed
+            chart.angles([0])
+            // enable color range
+            chart.colorRange(false);
+            // set color range length
+            chart.colorRange().length('80%');
+
+            // display chart
+            chart.container("container");
+            chart.draw();
+        });
+            //wordcloud
+
+
+    </script>
+
+</body>
+
+</html>

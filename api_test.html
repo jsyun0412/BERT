@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>	
+    <link rel="stylesheet" href="/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src='//code.jquery.com/jquery-1.8.3.js'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="/js/demo/bootstrap-datepicker.js" charset="UTF-8"></script>
+    <script>
+        if(this.selected){
+            console.log(this.selected.endDate.format("DD-MMMM-YY")); // need to show date in DD-MMMM-YY Format
+        }
+    $(function(){
+        $('.input-group.date').datepicker({
+            calendarWeeks: false,
+            todayHighlight: true,
+            autoclose: true,
+            format: "yyyy/mm/dd",
+            language: "kr",
+            onSelect: function(dateText, inst) { alert(dateText); }
+        }); 
+        
+            
+       
+    }); 
+    </script>
+
+
+
+</head>
+
+<body>
+    <h1>Emotions</h1>
+    <ul id="emotions"></ul>
+    <div class="input-group date">
+        <input type="text" class="form-control">
+        <span class="input-group-addon">
+            <i class="glyphicon glyphicon-calendar"></i></span>
+    </div>
+
+
+    <script>
+        const ul = document.getElementById('emotions');
+        const list = document.createDocumentFragment();
+        const url = "http://13.125.2.17:8000/emotions/?date=20221030"
+        fetch("http://13.125.2.17:8000/emotions/?date=20221030")
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => { //데이터
+                console.log(data);
+                let emotions = data;
+                    emotions.map(function(result){
+                    let li = document.createElement('li');
+                    let org = document.createElement('h2'); // 기관
+                    let state = document.createElement('span'); // 감정
+
+                    //innerHTML속성으로, 값 가져오기
+                    org.innerHTML = '${result.org}' //기관
+                    state.innerHTML = '${result.state}' //감정
+
+                    //DOM 요소를 appendChild와 연결
+                    li.appendChild(org);
+                    li.appendChild(state);
+                    li.appendChild(li);
+
+
+                });
+                ul.appendChild(list);
+
+
+            })
+            .catch(function(error){
+                console.log(error);
+            });
+            
+    </script>
+</body>
+
+</html>
